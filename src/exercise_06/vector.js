@@ -12,5 +12,37 @@ export default class Vector {
   // * Please do NOT modify the signature of the class. Please put all your code in the Vector
   // class.
 
-  // PLEASE DELETE THIS LINE AND ADD YOUR IMPLEMENTATION HERE
+  constructor(x, y) {
+    Object.defineProperty(this, 'x', {
+      get() {
+        return x;
+      },
+
+      set() {
+        throw new Error('Cannot set x');
+      },
+    });
+
+    Object.defineProperty(this, 'y', {
+      get() {
+        return y;
+      },
+
+      set() {
+        throw new Error('Cannot set y');
+      },
+    });
+  }
+
+  distance() {
+    return Math.sqrt((this.x ** 2) + (this.y ** 2));
+  }
+
+  static plus(v1, v2) {
+    return new Vector(v1.x + v2.x, v1.y + v2.y);
+  }
+
+  static minus(v1, v2) {
+    return new Vector(v1.x - v2.x, v1.y - v2.y);
+  }
 }
