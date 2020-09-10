@@ -13,23 +13,12 @@ export default class Vector {
   // class.
 
   constructor(x, y) {
-    Object.defineProperty(this, 'x', {
-      get() {
-        return x;
-      },
+    this.x = x;
+    this.y = y;
 
+    return new Proxy(this, {
       set() {
-        throw new Error('Cannot set x');
-      },
-    });
-
-    Object.defineProperty(this, 'y', {
-      get() {
-        return y;
-      },
-
-      set() {
-        throw new Error('Cannot set y');
+        throw new Error('Vector is readonly');
       },
     });
   }
